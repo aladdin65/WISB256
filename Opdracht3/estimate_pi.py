@@ -36,4 +36,4 @@ if (count > 0):
 else: Pi = 0
 
 print(count, "hits in", N, "tries")
-print(str(Pi))
+print("Pi = " + str(Pi))
