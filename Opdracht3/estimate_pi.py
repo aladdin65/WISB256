@@ -17,10 +17,10 @@ try:
 except:
     seed = 0
 
-def drop_needle(L):
+def drop_needle(Lenght):
     x1 = random.random()
     a = random.vonmisesvariate(0, 0)
-    x2 = x1 + L * math.cos(a)
+    x2 = x1 + Lenght * math.cos(a)
     if (x2 <= 0 and x1 >= 0) or (x1 <= 1 and x2 >= 1): return True
     else: return False
 
