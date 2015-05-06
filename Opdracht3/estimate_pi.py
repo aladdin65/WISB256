@@ -21,7 +21,7 @@ def drop_needle(Lenght):
     x1 = random.random()
     a = random.vonmisesvariate(0, 0)
     x2 = x1 + Lenght * math.cos(a)
-    if (x2 <= 0) or (x2 >= 1): return True
+    if (x2 <= 0) or (x2 >= 1) or (x1 == 0 or x1 == 1): return True
     else: return False
 
 count = 0
