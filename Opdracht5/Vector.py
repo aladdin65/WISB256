@@ -67,17 +67,17 @@ class Vector:
         c = c.scalar(v.inner(u) / u0)
         return c
     
-    def GrammSchmidt(V):
-        output = []
-        u = []
-        for i in range(0, len(V)):
-            c = Vector.copy(V[i])
-            for j  in range(0, i):
-                c = c.substract(Vector.proj(V[i], u[j]))
-            u.append(c)
-            c = c.scalar(1 / c.norm())
-            output.append(c)
-        return output
+def GrammSchmidt(V):
+    output = []
+    u = []
+    for i in range(0, len(V)):
+        c = Vector.copy(V[i])
+        for j  in range(0, i):
+            c = c.substract(Vector.proj(V[i], u[j]))
+        u.append(c)
+        c = c.scalar(1 / c.norm())
+        output.append(c)
+    return output
             
         
         
