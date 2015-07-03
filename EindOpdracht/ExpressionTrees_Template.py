@@ -32,10 +32,16 @@ class Expression():
         
     def __sub__(self, other):
         return OperatorNode(self, other, "-")
-        
+
     def __div__(self, other):
         return OperatorNode(self, other, "/")
         
+    def __floordiv__(self, other):
+        return OperatorNode(self, other, "/")
+
+    def __truediv__(self, other):
+        return OperatorNode(self, other, "/")
+
     def __mul__(self, other):
         return OperatorNode(self, other, "*")
         
@@ -221,7 +227,7 @@ class BinaryNode(Expression):
         
         result = "(" + str(lC) + " " + str(self.op_symbol) + " " + str(rC) + ")"
         if isnumber(str(lC)) and isnumber(str(rC)):
-            return int(eval(result))
+            return float(eval(result))
         else:
             return result
 
