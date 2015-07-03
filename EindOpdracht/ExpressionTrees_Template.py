@@ -102,7 +102,7 @@ class Expression():
                 if token[0].isalpha() or (token[0] == "-" and token[1].isalpha()):      #check if the variable has the correct name or has the unary operator
                     check = True
                     for i in range(1, len(token)):
-                        if not (token[i].isnumeric() or token[i].isalpha() or token[i] == "_"): #variable name should only contain letters or numbers
+                        if not (token[i].isnumeric() or token[i].isalpha() or token[i] == "_"): #variable name should only contain letters or numbers or underscore; e.g. 'x_0'
                             check = False
                             break
                     if (check):
@@ -178,19 +178,12 @@ class BinaryNode(Expression):
         self.lhs = lhs
         self.rhs = rhs
         self.op_symbol = op_symbol
-    
-    # TODO: what other properties could you need? Precedence, associativity, identity, etc.
-    #def __eq__(self, other):
-        #if type(self) == type(other):
-         #   return self.lhs == other.lhs and self.rhs == other.rhs
-        #else:
-         #   return False
-            
+
     def __str__(self):
         lstring = str(self.lhs)
         rstring = str(self.rhs)
-        
-        # remove unnecessary parentheses by checking precedence and associativity:
+
+        # add necessary parentheses by checking precedence and associativity:
         if self.op_symbol in "*/":   #left/right associative
             if isinstance(self.lhs, BinaryNode) and (self.lhs.op_symbol in "+-"):
                 lstring = "(" + lstring + ")"
@@ -204,7 +197,7 @@ class BinaryNode(Expression):
                 rstring = "(" + rstring + ")"
                 
         # minus operator is left associative:
-        if (self.op_symbol == "-" and (isinstance(self.rhs, BinaryNode) and self.rhs.op_symbol == "-")):
+        if (self.op_symbol == "-" and (isinstance(self.rhs, BinaryNode) and self.rhs.op_symbol in "+-/*")): # == "-")):
             rstring = "(" + rstring + ")"
         
         # return output:
