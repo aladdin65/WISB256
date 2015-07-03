@@ -203,7 +203,7 @@ class BinaryNode(Expression):
                 rstring = "(" + rstring + ")"
                 
         # minus operator is left associative:
-        if (self.op_symbol == "-" and (isinstance(self.rhs, BinaryNode) and self.rhs.op_symbol in "+-/*")): # == "-")):
+        if (self.op_symbol == "-" and (isinstance(self.rhs, BinaryNode) and self.rhs.op_symbol in "+-/*")):
             rstring = "(" + rstring + ")"
         
         # return output:
