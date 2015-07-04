@@ -209,7 +209,7 @@ class BinaryNode(Expression):
         # return output:
         return "%s %s %s" % (lstring, self.op_symbol, rstring)
     
-    def evaluate(self, values):
+    def evaluate(self, values = {}):
         # evaluate tree recursively
         output = self.eval_recursion(values)
         # remove unnecessary parentheses
