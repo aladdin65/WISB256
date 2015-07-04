@@ -15,3 +15,6 @@ print("print expression from string: " + str(Expression.fromString("1-(1+6)*(2+3
 
 expr = Expression.fromString("1+1")
 print(expr.evaluate())
+expr = Expression.fromString("-x+1")
+print(expr.evaluate())
+print(expr.evaluate({"x":1}))

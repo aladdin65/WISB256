@@ -159,9 +159,15 @@ class Constant(Expression):
 class Variable(Expression):
     """Represents a variable"""
     def __init__(self, name):
-        self.name = name
-        #hold a local variable for the unary operator:
-        self.value = 1
+        if name[0] != "-":
+            self.name = name
+            #hold a local variable for the unary operator:
+            self.value = 1
+        #if unary operator:
+        else:
+            self.name = name[1:len(name)]
+            self.value = -1
+            
 
     def __eq__(self, other):
         if isinstance(other, Variable):
