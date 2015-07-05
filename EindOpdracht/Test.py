@@ -20,5 +20,5 @@ print(expr.evaluate())
 print(expr.evaluate({"x":1}))
 
 print(Expression.fromString("1").evaluate())
-print(Expression.fromString("x").evaluate())
+print(Expression.fromString("-x").evaluate())
 print(Expression.fromString("x").evaluate({"x":5.1}))

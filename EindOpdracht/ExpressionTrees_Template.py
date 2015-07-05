@@ -182,7 +182,10 @@ class Variable(Expression):
         if self.name in values:
             return values[self.name] * self.value
         else:
-            return self.name
+            if (self.value == 1):
+                return str(self.name)
+            else:
+                return "-" + self.name
 
     def __str__(self):
         if (self.value == 1):
