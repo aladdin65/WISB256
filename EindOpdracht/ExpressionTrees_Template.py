@@ -136,10 +136,9 @@ class Expression():
         return stack[0]
     
     def makeFunction(self):
-        expr = str(self)
         params = set({})
         stack = [self]
-        
+        #go through the tree to find variables
         while len(stack)>0:
             tmp = stack.pop()
             if isinstance(tmp,Variable):
@@ -147,11 +146,11 @@ class Expression():
             elif isinstance(tmp,BinaryNode):
                 stack.append(tmp.lhs)
                 stack.append(tmp.rhs)
+                
         params = list(params)
         params.sort()
         params = ', '.join(params)
         result = 'lambda ' + params + ' : ' + str(self)
-        print(result)
         print('Argument order is: ' + params)
         return eval(result)
         
