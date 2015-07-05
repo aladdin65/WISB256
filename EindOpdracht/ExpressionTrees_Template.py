@@ -145,6 +145,9 @@ class Constant(Expression):
             return self.value == other.value
         else:
             return False
+            
+    def evaluate(self, values = {}):
+        return self.value
         
     def __str__(self):
         return str(self.value)
@@ -175,6 +178,12 @@ class Variable(Expression):
         else:
             return False
             
+    def evaluate(self, values = {}):
+        if self.name in values:
+            return values[self.name] * self.value
+        else:
+            return self.name
+
     def __str__(self):
         if (self.value == 1):
             return self.name
