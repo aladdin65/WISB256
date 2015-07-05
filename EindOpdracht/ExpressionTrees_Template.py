@@ -134,7 +134,31 @@ class Expression():
                 stack.append(t)
         # the resulting expression tree is what's left on the stack
         return stack[0]
-
+    
+    def makeFunction(self):
+        expr = str(self)
+        params = set({})
+        stack = [self]
+        
+        while len(stack)>0:
+            tmp = stack.pop()
+            if isinstance(tmp,Variable):
+                params.add(tmp.name)
+            elif isinstance(tmp,BinaryNode):
+                stack.append(tmp.lhs)
+                stack.append(tmp.rhs)
+        params = list(params)
+        params.sort()
+        params = ', '.join(params)
+        result = 'lambda ' + params + ' : ' + str(self)
+        print(result)
+        print('Argument order is: ' + params)
+        return eval(result)
+        
+        
+        
+        
+    
 class Constant(Expression):
     """Represents a constant value"""
     def __init__(self, value):
