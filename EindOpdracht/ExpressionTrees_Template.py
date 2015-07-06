@@ -135,10 +135,11 @@ class Expression():
         # the resulting expression tree is what's left on the stack
         return stack[0]
     
+    #returns a Python function:
     def makeFunction(self):
         params = set({})
         stack = [self]
-        #go through the tree to find variables
+        #go through the tree to find variables (Depth First Search)
         while len(stack)>0:
             tmp = stack.pop()
             if isinstance(tmp,Variable):
@@ -148,16 +149,15 @@ class Expression():
                 stack.append(tmp.rhs)
                 
         params = list(params)
+        #sort variables:
         params.sort()
         params = ', '.join(params)
         result = 'lambda ' + params + ' : ' + str(self)
         print('Argument order is: ' + params)
+        #return lambda function:
         return eval(result)
         
-        
-        
-        
-    
+
 class Constant(Expression):
     """Represents a constant value"""
     def __init__(self, value):
